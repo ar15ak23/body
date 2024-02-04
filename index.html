@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&lt;model-viewer&gt; template</title>
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+
+    <style>
+        /* Style for hotspots */
+        .Hotspot {
+            width: 20px; /* Reduced width */
+            height: 20px; /* Reduced height */
+            background-color: rgba(255, 99, 71, 0.5); /* Semi-transparent Coral color */
+            border: 2px solid white; /* White border */
+            border-radius: 50%; /* Make it a circle */
+            color: white; /* White text color */
+            font-size: 12px; /* Reduced font size */
+            font-weight: bold; /* Bold font weight */
+            display: flex; /* Flex display */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            cursor: pointer; /* Cursor on hover */
+            position: absolute; /* Position absolute for placement */
+            z-index: 1; /* Set z-index to appear above model */
+        }
+
+        /* Style for hotspot annotations */
+        .HotspotAnnotation {
+            display: none; /* Initially hidden */
+            position: absolute; /* Position absolute for placement */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            color: white; /* White text color */
+            padding: 5px; /* Padding around text */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 12px; /* Font size */
+            z-index: 2; /* Higher z-index to appear above hotspots */
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+        /* Show hotspot annotation on hover */
+        .Hotspot:hover .HotspotAnnotation {
+            display: block; /* Show on hover */
+        }
+  
+ 
+      /* Styles for hotspots */
+      .Hotspot {
+          width: 20px;
+          height: 20px;
+          background-color: rgba(255, 99, 71, 0.5);
+          border: 2px solid white;
+          border-radius: 50%;
+          color: white;
+          font-size: 12px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          position: absolute;
+          z-index: 1;
+      }
+
+      /* Styles for hotspot annotations */
+      .HotspotAnnotation {
+          display: none;
+          position: absolute;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: white;
+          padding: 5px;
+          border-radius: 5px;
+          font-size: 12px;
+          z-index: 2;
+          white-space: nowrap;
+      }
+
+      .Hotspot:hover .HotspotAnnotation {
+          display: block;
+      }
+
+      /* Styles for hotspot slider */
+      .hotspot-slider {
+          margin-top: 20px;
+          overflow: hidden;
+          width: 100%;
+          white-space: nowrap;
+          position: relative;
+      }
+
+      .slider-content {
+          display: inline-block;
+          white-space: nowrap;
+      }
+
+      .slider-item {
+          padding: 5px 10px;
+          margin-right: 10px;
+          background-color: #333;
+          color: white;
+          cursor: pointer;
+          white-space: nowrap;
+          display: inline-block;
+      }
+
+      /* Styles for arrow buttons */
+      .arrow {
+          font-size: 20px;
+          color: #333;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 3;
+          background: rgba(255, 255, 255, 0.5);
+          padding: 5px;
+          border-radius: 50%;
+      }
+
+      .prev {
+          left: 10px;
+      }
+
+      .next {
+          right: 10px;
+      }
+  </style>
+  </head>
+  
+  <body>
+    <model-viewer src="ecorche_-_anatomy_study.glb" 
+      ar 
+      ar-modes="webxr scene-viewer quick-look" 
+      camera-controls 
+      tone-mapping="commerce"
+      touch-action="none" 
+      camera-orbit="-8.142746deg 68.967deg 0.6179899m" 
+      field-of-view="45deg" 
+      min-field-of-view="25deg" 
+      max-field-of-view="45deg" 
+      interpolation-decay="200" 
+      min-camera-orbit="auto auto 5%"  
+      poster="poster.webp" 
+      shadow-intensity="1"
+      autoplay="false">
+      
+      <button class="Hotspot" slot="hotspot-1" data-position="-0.0008078778459181504m 0.006009794448609236m -0.00037152846108999646m" data-normal="-0.9571850763848045m -0.06440962803445964m 0.2822200017055463m" 
+        data-visibility-attribute="visible" camera-orbit="309.7deg 67.7deg 0.03071m" field-of-view="12deg">
+          <div class="HotspotAnnotation">Esternocleidomastoideo</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-3" data-position="-0.0008556320272971615m 0.003545666217113389m 0.0012607716191885914m" data-normal="0.17099115480837082m 0.49273203442527336m 0.8532157799926297m" data-visibility-attribute="visible" camera-orbit="371deg 85.74deg 0.03041m" field-of-view="12deg">
+          <div class="HotspotAnnotation">Pectoral mayor</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-4" data-position="-0.003362263255406241m 0.004132706054401938m -0.00034584034180425334m" data-normal="-0.8487708455144733m 0.4238602449700428m 0.31611792821442686m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Deltoide</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-5" data-position="0.00351033960363781m 0.0017275781174830216m -0.0005572741806291973m" data-normal="0.3451121476139813m -0.04601940576577804m 0.9374325681680953m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Biceps</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-6" data-position="0.0025138275117117122m 0.002562861850219715m -0.00042549039200829924m" data-normal="0.9065808563408151m 0.25624087378901383m 0.33533828519302294m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Serratos</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-7" data-position="-0.0008819099751775474m -0.00013422669539076828m 0.0013244249535146278m" data-normal="-0.2854764116521757m -0.3010414988807327m 0.9098775930540545m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Recto del abdomen</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-8" data-position="-0.0021480789774922663m 0.0014493737417199588m 0.0005283993960115735m" data-normal="-0.9144394931863418m 0.06836373385888223m 0.3989070232447385m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Oblicuo externo del abdomen</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-9" data-position="-0.004962020587025669m -0.0014280339404620554m -0.0013466696791938236m" data-normal="-0.8361001313088985m -0.2988584566327448m -0.460021948741945m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Extensores de los dedos</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-10" data-position="0.003931132335796846m -0.0017851439821984533m -0.0006643062300780611m" data-normal="-0.8280962053670612m -0.1336037471137304m 0.5444324691032347m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Flexores de los dedos</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-11" data-position="-0.0018103170025353405m -0.0066462914553717415m 0.0007235881476248946m" data-normal="0.37283547942004314m -0.07902198803986804m 0.924526489989256m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Cuadriceps femoral</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-12" data-position="-0.0010435619502800566m -0.005093385049567296m 0.0005165978427300828m" data-normal="0.8250773701478838m 0.17733468800263694m 0.5364697025003924m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Sartorio</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-14" data-position="-0.0005283046948653538m 0.005665742803959513m -0.001736711154191925m" data-normal="0.1924162884271709m 0.19544731961130882m -0.9616529089045937m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Trapecio</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-15" data-position="0.0013999302007286054m 0.0036730662927261324m -0.0021343882429294327m" data-normal="-0.010709309758235069m 0.17155926456403225m -0.9851155919112998m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Infraespinoso</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-16" data-position="-0.0018443011705864428m 0.0010882339188453883m -0.0017521356340907206m" data-normal="-0.37750066747646366m -0.4118805124586196m -0.8293658357514188m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Dorsal ancho</div>
+      </button>
+      
+      <button class="Hotspot" slot="hotspot-17" data-position="0.003271018311460058m 0.002129308031535458m -0.0022947672033867272m" data-normal="0.20457940349556572m -0.03962018760297172m -0.9780478047619676m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Triceps</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+      
+    </model-viewer>  
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <div class="hotspot-slider">
+      <div class="slider-content">
+          <span class="slider-item" data-hotspot="1">Esternocleidomastoideo</span>
+          <span class="slider-item" data-hotspot="3">Pectoral mayor</span>
+          <span class="slider-item" data-hotspot="4">Deltoide</span>
+          <span class="slider-item" data-hotspot="5">Biceps</span>
+          <span class="slider-item" data-hotspot="6">Serratos</span>
+          <span class="slider-item" data-hotspot="7">Recto del abdomen</span>
+          <span class="slider-item" data-hotspot="8">Oblicuo externo del abdomen</span>
+          <span class="slider-item" data-hotspot="9">Extensores de los dedos</span>
+          <span class="slider-item" data-hotspot="10">Flexores de los dedos</span>
+          <span class="slider-item" data-hotspot="11">Cuadriceps femoral</span>
+          <span class="slider-item" data-hotspot="12">Sartorio</span>
+          <span class="slider-item" data-hotspot="14">Trapecio</span>
+          <span class="slider-item" data-hotspot="15">Infraespinoso</span>
+          <span class="slider-item" data-hotspot="16">Dorsal ancho</span>
+          <span class="slider-item" data-hotspot="17">Triceps</span>
+        </div>
+      
+
+    </div>
+    </div>
+        <span class="arrow prev" onclick="prevHotspot()">&#10094;</span>
+        <span class="arrow next" onclick="nextHotspot()">&#10095;</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let currentIndex = 0;
+        const sliderItems = document.querySelectorAll('.slider-item');
+
+        function showCurrentHotspot() {
+            sliderItems.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.style.display = 'inline-block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function prevHotspot() {
+            currentIndex = (currentIndex === 0) ? (sliderItems.length - 1) : (currentIndex - 1);
+            showCurrentHotspot();
+        }
+
+        function nextHotspot() {
+            currentIndex = (currentIndex === sliderItems.length - 1) ? 0 : (currentIndex + 1);
+            showCurrentHotspot();
+        }
+
+        showCurrentHotspot();
+    </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script>
+        // Define a function to handle hotspot clicks and adjust camera position and field of view
+        function handleHotspotClick(hotspot) {
+            let dataset = hotspot.dataset;
+            let modelViewer = document.querySelector("model-viewer");
+            modelViewer.cameraOrbit = dataset.orbit;
+            modelViewer.cameraTarget = dataset.position;
+            modelViewer.fieldOfView = dataset.fov;
+        }
+
+        // Attach event listeners to hotspot buttons
+        document.querySelectorAll('.Hotspot').forEach((hotspot) => {
+            hotspot.addEventListener('click', () => {
+                handleHotspotClick(hotspot);
+            });
+        });
+
+        // Attach event listeners to slider items to handle hotspot clicks
+        document.querySelectorAll('.slider-item').forEach((sliderItem) => {
+            sliderItem.addEventListener('click', () => {
+                let hotspotIndex = sliderItem.dataset.hotspot;
+                let hotspotButton = document.querySelector(`[slot="hotspot-${hotspotIndex}"]`);
+                handleHotspotClick(hotspotButton);
+            });
+        });
+    </script>
+</body>
+</html>
